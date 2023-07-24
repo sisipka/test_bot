@@ -8,7 +8,7 @@ from aiogram import Bot, Dispatcher, types
 # Включаем логирование, чтобы не пропустить важные сообщения
 logging.basicConfig(level=logging.INFO)
 # Объект бота
-bot = Bot(token="6421437309:AAH1pls2rdmF5K-pcnv771svphiNUBRDJ0Y")
+bot = Bot(token=TOKEN) # TOKEN tellegramm bot
 # Диспетчер
 dp = Dispatcher(bot)
 
