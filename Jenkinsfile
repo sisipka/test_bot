@@ -39,7 +39,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
     node('mypod') {
 
         def REPOSITORY_URI = "sisipka/test_bot"
-        def HELM_APP_NAME = "test-bot-app"
+        def HELM_APP_NAME = "bot-app"
         def HELM_CHART_DIRECTORY = "helm_test_bot"
 
         stage('Get latest version of code') {
