@@ -70,7 +70,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
                 sh 'docker image ls' 
                 sh 'echo "MY user ${USERNAME}"'
                 sh 'echo "MY token ${token}"'
-                'echo "MY TOKEN ${TOKEN}"'
+                sh 'echo "MY TOKEN ${TOKEN}"'
               } 
                 
             }
