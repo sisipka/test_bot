@@ -1,4 +1,4 @@
-podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [ 
+podTemplate(label: 'test_bot', serviceAccount: 'jenkins', containers: [ 
     containerTemplate(
       name: 'docker', 
       image: 'docker', 
@@ -38,9 +38,9 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
   ) {
     node('mypod') {
 
-        def REPOSITORY_URI = "sisipka/nginx"
-        def HELM_APP_NAME = "nginx-app"
-        def HELM_CHART_DIRECTORY = "helm_nginx"
+        def REPOSITORY_URI = "sisipka/test_bot"
+        def HELM_APP_NAME = "test-bot-app"
+        def HELM_CHART_DIRECTORY = "helm_test_bot"
 
         stage('Get latest version of code') {
           checkout scm
