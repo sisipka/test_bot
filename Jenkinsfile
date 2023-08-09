@@ -1,4 +1,4 @@
-podTemplate(label: 'test_bot', serviceAccount: 'jenkins', containers: [ 
+podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [ 
     containerTemplate(
       name: 'docker', 
       image: 'docker', 
