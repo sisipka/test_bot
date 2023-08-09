@@ -47,6 +47,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
         }
         stage('Check running containers') {
             container('docker') {  
+                sh 'echo "-----------------------Check running containers--------------------------"'
                 sh 'hostname'
                 sh 'hostname -i' 
                 sh 'docker ps'
@@ -65,6 +66,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
             container('docker'){
 
               withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'), string(credentialsId: 'TOKEN', variable: 'TOKEN'), string(credentialsId: 'token', variable: 'token')]) {
+                sh 'echo "-------------------------------Build Image------------------------------------"'
                 sh 'docker login --username="${USERNAME}" --password="${PASSWORD}"'
                 sh "docker build -t ${REPOSITORY_URI}:${BUILD_NUMBER} ."
                 sh 'docker image ls' 
@@ -78,6 +80,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
 
         stage('Testing') {
             container('docker') { 
+              sh 'echo "--------------------------------Testing------------------------------------------"'
               sh 'whoami'
               sh 'hostname -i'
               sh 'cat /etc/os-release'
@@ -89,6 +92,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
         stage('Push Image'){
             container('docker'){
               withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                sh 'echo "--------------------------------Push Image------------------------------------------"'
                 sh 'docker image ls'
                 sh "docker push ${REPOSITORY_URI}:${BUILD_NUMBER}"
               }                 
@@ -100,6 +104,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
             if (tag){
                 container('docker'){
                   withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh 'echo "--------------------------------Deploy Image to k8s------------------------------------------"'
                     sh 'docker login --username="${USERNAME}" --password="${PASSWORD}"'
                     sh "docker build -t ${REPOSITORY_URI}:$tag ."
                     sh 'docker image ls' 
