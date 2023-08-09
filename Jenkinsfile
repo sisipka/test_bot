@@ -65,13 +65,11 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
         stage('Build Image'){
             container('docker'){
 
-              withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'), string(credentialsId: 'TOKEN', variable: 'TOKEN'), string(credentialsId: 'token', variable: 'token')]) {
+              withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'), string(credentialsId: 'TOKEN', variable: 'TOKEN')]) {
 
                 sh 'docker login --username="${USERNAME}" --password="${PASSWORD}"'
                 sh "docker build -t ${REPOSITORY_URI}:${BUILD_NUMBER} ."
                 sh 'docker image ls' 
-                sh 'echo "MY user ${USERNAME}"'
-                sh 'echo "MY token ${token}"'
                 sh 'echo "MY TOKEN ${TOKEN}"'
               } 
                 
