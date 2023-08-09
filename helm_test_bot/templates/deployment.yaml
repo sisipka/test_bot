@@ -15,5 +15,5 @@ spec:
         project: {{ .Release.Name }}
     spec:
       containers:
-        - name : {{ .Release.Name }}-test_bot
+        - name : {{ .Release.Name }}
           image: {{ .Values.container.image }}
