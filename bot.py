@@ -2,7 +2,6 @@ from requests import get
 import asyncio
 import logging
 from aiogram import Bot, Dispatcher, types
-from aiogram.filters import Command
 
 
 # Включаем логирование, чтобы не пропустить важные сообщения
@@ -27,16 +26,6 @@ async def send_welcome(msg: types.Message):
 @dp.message_handler(commands=['help'])
 async def send_help(msg: types.Message):
     await msg.reply('Я бот. Создан для тестов и экспериментов')
-
-# Приветствие новых пользователей
-
-
-@dp.message(F.new_chat_members)
-async def somebody_added(message: types.Message):
-    for user in message.new_chat_members:
-        # проперти full_name берёт сразу имя И фамилию
-        # (на скриншоте выше у юзеров нет фамилии)
-        await message.reply(f"Привет, {user.full_name}")
 
 # Хэндлер на команду /ip
 
