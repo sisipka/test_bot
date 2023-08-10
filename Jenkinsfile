@@ -64,8 +64,13 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
 
         stage('Build Image'){
             container('docker'){
+              withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                sh 'export TOKEN = "${PASSWORD}"'
+                sh 'echo "$TOKEN"'
+                sh 'env | grep TOKEN'
+              }
 
-              withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'), string(credentialsId: 'TOKEN', variable: 'TOKEN')]) {
+              withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
 
                 sh 'docker login --username="${USERNAME}" --password="${PASSWORD}"'
                 sh "docker build -t ${REPOSITORY_URI}:${BUILD_NUMBER} ."
@@ -100,6 +105,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
         stage('Deploy Image to k8s'){
             
             container('helm'){
+        
               sh 'ls -l'
               sh 'helm list'
               sh "helm lint ./${HELM_CHART_DIRECTORY}"
