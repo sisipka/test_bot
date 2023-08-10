@@ -71,7 +71,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
                 sh 'docker login --username="${USERNAME}" --password="${PASSWORD}"'
                 sh "docker build -t ${REPOSITORY_URI}:${BUILD_NUMBER} ."
                 sh 'docker image ls'
-                sh "docker rmi -f $(docker images | grep 'sisipka/test_bot' | awk '{print $3}')"
+                sh 'docker rmi -f $(docker images | grep "sisipka/test_bot" | awk '{print $3}')'
                 sh 'docker image ls' 
               } 
                 
