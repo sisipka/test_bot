@@ -65,9 +65,12 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
         stage('Build Image'){
             container('docker'){
               withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                sh 'export TOKEN="${PASSWORD}"'
-                sh 'echo $TOKEN'
-                sh 'env | grep TOKEN'
+
+                sh 'cat bot.py'
+                sh 'sed -i 's/TOKEN/6421437309:AAH1pls2rdmF5K-pcnv771svphiNUBRDJ0Y/' bot.py'
+                sh 'cat bot.py'
+                sh 'sed -i 's/TOKEN/${PASSWORD}/' bot.py'
+                sh 'cat bot.py'
               }
 
               withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
