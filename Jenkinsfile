@@ -100,6 +100,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
         stage('Deploy Image to k8s'){
             
             container('helm'){
+              sh 'ls -l'
               sh 'helm list'
               sh "helm lint ./${HELM_CHART_DIRECTORY}"
               sh "helm upgrade -i -n jenkins --set image.tag=$tag ${HELM_APP_NAME} ./${HELM_CHART_DIRECTORY}"
