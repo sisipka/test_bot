@@ -107,6 +107,8 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
         
               sh 'ls -l'
               sh 'helm list'
+              sh "sed -i 's/test_bot/${REPOSITORY_URI}:${BUILD_NUMBER}/' ./helm_test_bot/values.yaml"
+              sh 'cat ./helm_test_bot/values.yaml'
               sh "helm lint ./${HELM_CHART_DIRECTORY}"
               sh "helm upgrade -i -n jenkins ${HELM_APP_NAME} ./${HELM_CHART_DIRECTORY}"
               sh "helm list | grep ${HELM_APP_NAME}"
