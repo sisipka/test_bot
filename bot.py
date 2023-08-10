@@ -27,6 +27,23 @@ async def send_welcome(msg: types.Message):
 async def send_help(msg: types.Message):
     await msg.reply('Я бот. Создан для тестов и экспериментов')
 
+# Приветствие новых пользователей
+
+
+@dp.message(F.new_chat_members)
+async def somebody_added(message: types.Message):
+    for user in message.new_chat_members:
+        # проперти full_name берёт сразу имя И фамилию
+        # (на скриншоте выше у юзеров нет фамилии)
+        await message.reply(f"Привет, {user.full_name}")
+
+# Хэндлер на команду /ip
+
+
+@dp.message_handler(commands=['ip'])
+async def send_ip(msg: types.Message):
+    await msg.answer(get('https://api.ipify.org').text)
+
 
 @dp.message_handler(content_types=['text'])
 async def get_text_messages(msg: types.Message):
