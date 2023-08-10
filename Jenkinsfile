@@ -49,8 +49,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
             container('docker') {  
 
                 sh 'hostname'
-                sh 'hostname -i' 
-                sh 'docker ps'
+                sh 'hostname -i'
                 sh 'ls'
             }
             container('kubectl') { 
@@ -67,14 +66,11 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
 
               withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
 
-                sh 'cat bot.py'
                 sh "sed -i 's/TOKEN/6421437309:AAH1pls2rdmF5K-pcnv771svphiNUBRDJ0Y/' bot.py"
                 sh 'cat bot.py'
-                
                 sh 'docker login --username="${USERNAME}" --password="${PASSWORD}"'
                 sh "docker build -t ${REPOSITORY_URI}:${BUILD_NUMBER} ."
                 sh 'docker image ls' 
-                sh 'echo "MY TOKEN ${TOKEN}"'
               } 
                 
             }
@@ -84,10 +80,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
             container('docker') { 
 
               sh 'whoami'
-              sh 'hostname -i'
               sh 'cat /etc/os-release'
-              sh 'echo $TAG_NAME'
-              sh 'echo $tag_name'
             }
         }
 
@@ -106,7 +99,6 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
             container('helm'){
         
               sh 'ls -l'
-              sh 'cat ./helm_test_bot/values.yaml'
               sh 'helm list'
               sh "sed -i 's/xxx/${BUILD_NUMBER}/' ./helm_test_bot/values.yaml"
               sh 'cat ./helm_test_bot/values.yaml'
