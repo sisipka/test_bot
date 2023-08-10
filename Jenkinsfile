@@ -101,7 +101,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
             
             container('helm'){
               sh 'ls -l'
-              sh 'echo "${HELM_CHART_DIRECTORY}"'
+              sh 'echo ${HELM_CHART_DIRECTORY}'
               sh 'helm list'
               sh "helm lint ./${HELM_CHART_DIRECTORY}"
               sh "helm upgrade -i -n jenkins --set image.tag=$tag ${HELM_APP_NAME} ./${HELM_CHART_DIRECTORY}"
@@ -110,7 +110,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
               
          
             
-         }      
+        }      
         
     }
 }
