@@ -65,7 +65,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
         stage('Build Image'){
             container('docker'){
               withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                sh 'export TOKEN = "${PASSWORD}"'
+                sh 'export TOKEN="${PASSWORD}"'
                 sh 'echo "$TOKEN"'
                 sh 'env | grep TOKEN'
               }
