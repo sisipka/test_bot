@@ -65,13 +65,12 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
         stage('Build Image'){
             container('docker'){
 
-              withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'), string(credentialsId: 'TOKEN_BOT', variable: 'TOKEN_BOT')]) {
+              withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
 
                 sh 'cat bot.py'
                 sh "sed -i 's/TOKEN/6421437309:AAH1pls2rdmF5K-pcnv771svphiNUBRDJ0Y/' bot.py"
                 sh 'cat bot.py'
-                sh "sed -i 's/TOKEN/${TOKEN_BOT}/' bot.py"
-                sh 'cat bot.py'
+                
                 sh 'docker login --username="${USERNAME}" --password="${PASSWORD}"'
                 sh "docker build -t ${REPOSITORY_URI}:${BUILD_NUMBER} ."
                 sh 'docker image ls' 
