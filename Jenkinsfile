@@ -106,6 +106,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
             container('helm'){
         
               sh 'ls -l'
+              sh 'cat ./helm_test_bot/values.yaml'
               sh 'helm list'
               sh "sed -i 's/'sisipka/test_bot'/${REPOSITORY_URI}:${BUILD_NUMBER}/' ./helm_test_bot/values.yaml"
               sh 'cat ./helm_test_bot/values.yaml'
