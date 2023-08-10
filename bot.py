@@ -24,8 +24,8 @@ async def send_welcome(msg: types.Message):
 
 
 @dp.message_handler(commands=['help'])
-async def send_welcome(msg: types.Message):
-    await msg.answer('Я бот. Создан для тестов и экспериментов')
+async def send_help(msg: types.Message):
+    await msg.reply('Я бот. Создан для тестов и экспериментов')
 
 
 @dp.message_handler(content_types=['text'])
