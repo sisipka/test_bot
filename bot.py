@@ -34,6 +34,8 @@ async def send_help(msg: types.Message):
 async def send_ip(msg: types.Message):
     await msg.answer(get('https://api.ipify.org').text)
 
+# Хэндлер Привет
+
 
 @dp.message_handler(content_types=['text'])
 async def get_text_messages(msg: types.Message):
