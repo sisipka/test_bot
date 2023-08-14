@@ -4,21 +4,6 @@ import logging
 from aiogram import Bot, Dispatcher, types
 
 from geopy.geocoders import Nominatim
-@dp.message_handler(commands=['location'])
-async def location_info(message: types.Message):
-    # Получить местоположение пользователя из ответа сервера
-    user_location = message.text.split(',')[1].strip()
-    
-    # Отправить запрос к API геолокации
-    response = await Nominatim.reverse('api_address', username=message.from_user.username, country=user_location)
-    
-    # Получить данные о местоположении пользователя
-    address = await response.json()['address']
-    latitude = response['lat']
-    longitude = response['lng']
-    
-    # Отобразить местоположение пользователя в сообщении
-    await msg.answer(f'Местоположение пользователя: {latitude}, {longitude}')
 
 # Включаем логирование, чтобы не пропустить важные сообщения
 logging.basicConfig(level=logging.INFO)
@@ -61,6 +46,23 @@ async def get_text_messages(msg: types.Message):
         await msg.answer(get('https://api.ipify.org').text)
     else:
         await msg.answer('Не понимаю, что это значит.')
+
+@dp.message_handler(commands=['locate'])
+async def location_info(message: types.Message):
+    # Получить местоположение пользователя из ответа сервера
+    user_location = message.text.split(',')[1].strip()
+    
+    # Отправить запрос к API геолокации
+    response = await Nominatim.reverse('api_address', username=message.from_user.username, country=user_location)
+    
+    # Получить данные о местоположении пользователя
+    address = await response.json()['address']
+    latitude = response['lat']
+    longitude = response['lng']
+    
+    # Отобразить местоположение пользователя в сообщении
+    await msg.answer(f'Местоположение пользователя: {latitude}, {longitude}')
+
 
 
 # Запуск процесса поллинга новых апдейтов
