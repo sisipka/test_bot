@@ -3,23 +3,22 @@ import asyncio
 import logging
 from aiogram import Bot, Dispatcher, types
 
-from geopy.distance import distance
 from geopy.geocoders import Nominatim
-
-# Установка библиотеки geopy
-import geopy
-
-# Получение данных о местоположении пользователя
-user_location = geolocator.geolocator('me')
-
-# Получение текущей погоды для указанного местоположения
-current_weather = user_location.reverse().location.window.current.temperature
-
-# Создание инструкции
-instructions = f"Сегодня хорошая погода, но может быть прохладно. Температура составляет {current_weather} градусов."
-
-# Отправка инструкции пользователю
-bot.send_message(chat_id=user_id, instructions=instructions)
+@dp.message_handler(commands=['location'])
+async def location_info(message: types.Message):
+    # Получить местоположение пользователя из ответа сервера
+    user_location = message.text.split(',')[1].strip()
+    
+    # Отправить запрос к API геолокации
+    response = await Nominatim.reverse('api_address', username=message.from_user.username, country=user_location)
+    
+    # Получить данные о местоположении пользователя
+    address = await response.json()['address']
+    latitude = response['lat']
+    longitude = response['lng']
+    
+    # Отобразить местоположение пользователя в сообщении
+    print('Местоположение пользователя: {}, {}'.format(latitude, longitude))
 
 # Включаем логирование, чтобы не пропустить важные сообщения
 logging.basicConfig(level=logging.INFO)
