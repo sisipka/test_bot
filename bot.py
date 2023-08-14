@@ -48,6 +48,8 @@ async def get_text_messages(msg: types.Message):
         await msg.answer('Не понимаю, что это значит.')
 
 # Функция для получения местоположения
+
+
 @bot.message_handler(commands=['geo'])
 def geolocation(message):
     # Получаем местоположение пользователя из ответа сервера
