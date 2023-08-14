@@ -52,7 +52,7 @@ async def get_text_messages(msg: types.Message):
 def geolocation(message):
     # Получаем местоположение пользователя из ответа сервера
     user_location = message.text.split(',')[1].strip()
-    await msg.answer(user_location)
+    await msg.answer(user_location.text)
 
 
 # Запуск процесса поллинга новых апдейтов
