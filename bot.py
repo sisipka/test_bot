@@ -3,13 +3,23 @@ import asyncio
 import logging
 from aiogram import Bot, Dispatcher, types
 
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from geopy.distance import distance
+from geopy.geocoders import Nominatim
 
-but1 = KeyboardButton('🕹 Share with GEO', request_location=True)
+# Установка библиотеки geopy
+import geopy
 
-button1 = ReplyKeyboardMarkup(resize_keyboard=True)
+# Получение данных о местоположении пользователя
+user_location = geolocator.geolocator('me')
 
-button1.add(but1)
+# Получение текущей погоды для указанного местоположения
+current_weather = user_location.reverse().location.window.current.temperature
+
+# Создание инструкции
+instructions = f"Сегодня хорошая погода, но может быть прохладно. Температура составляет {current_weather} градусов."
+
+# Отправка инструкции пользователю
+bot.send_message(chat_id=user_id, instructions=instructions)
 
 # Включаем логирование, чтобы не пропустить важные сообщения
 logging.basicConfig(level=logging.INFO)
