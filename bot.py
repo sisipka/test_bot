@@ -52,16 +52,7 @@ async def get_text_messages(msg: types.Message):
 def geolocation(message):
     # Получаем местоположение пользователя из ответа сервера
     user_location = message.text.split(',')[1].strip()
-    
-    # Отправляем запрос к API геолокации
-    response = await GPS.reverse('api_address', username=message.from_user.username, country=user_location)
-    
-    # Получаем данные о местоположении пользователя
-    latitude = response['lat']
-    longitude = response['lng']
-    
-    # Отображаем текущую позицию устройства GPS в сообщении
-    print('Местоположение пользователя: {}, {}'.format(latitude, longitude))
+    await msg.answer(user_location)
 
 
 # Запуск процесса поллинга новых апдейтов
