@@ -3,7 +3,7 @@ import asyncio
 import logging
 from aiogram import Bot, Dispatcher, types
 
-from geopy.geocoders import Nominatim
+from geolocation import GPS
 
 # Включаем логирование, чтобы не пропустить важные сообщения
 logging.basicConfig(level=logging.INFO)
@@ -47,22 +47,21 @@ async def get_text_messages(msg: types.Message):
     else:
         await msg.answer('Не понимаю, что это значит.')
 
-@dp.message_handler(commands=['locate'])
-async def location_info(message: types.Message):
-    # Получить местоположение пользователя из ответа сервера
+# Функция для получения местоположения
+@bot.message_handler(commands=['geo'])
+def geolocation(message):
+    # Получаем местоположение пользователя из ответа сервера
     user_location = message.text.split(',')[1].strip()
     
-    # Отправить запрос к API геолокации
-    response = await Nominatim.reverse('api_address', username=message.from_user.username, country=user_location)
+    # Отправляем запрос к API геолокации
+    response = await GPS.reverse('api_address', username=message.from_user.username, country=user_location)
     
-    # Получить данные о местоположении пользователя
-    address = await response.json()['address']
+    # Получаем данные о местоположении пользователя
     latitude = response['lat']
     longitude = response['lng']
     
-    # Отобразить местоположение пользователя в сообщении
-    return('Местоположение пользователя: {}, {}'.format(latitude, longitude))
-
+    # Отображаем текущую позицию устройства GPS в сообщении
+    print('Местоположение пользователя: {}, {}'.format(latitude, longitude))
 
 
 # Запуск процесса поллинга новых апдейтов
