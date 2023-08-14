@@ -61,7 +61,7 @@ async def location_info(message: types.Message):
     longitude = response['lng']
     
     # Отобразить местоположение пользователя в сообщении
-    print('Местоположение пользователя: {}, {}'.format(latitude, longitude))
+    return('Местоположение пользователя: {}, {}'.format(latitude, longitude))
 
 
 
