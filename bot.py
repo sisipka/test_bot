@@ -18,7 +18,7 @@ async def location_info(message: types.Message):
     longitude = response['lng']
     
     # Отобразить местоположение пользователя в сообщении
-    print('Местоположение пользователя: {}, {}'.format(latitude, longitude))
+    await msg.answer(f'Местоположение пользователя: {latitude}, {longitude}')
 
 # Включаем логирование, чтобы не пропустить важные сообщения
 logging.basicConfig(level=logging.INFO)
