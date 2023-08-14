@@ -3,6 +3,13 @@ import asyncio
 import logging
 from aiogram import Bot, Dispatcher, types
 
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+
+but1 = KeyboardButton('🕹 Share with GEO', request_location=True)
+
+button1 = ReplyKeyboardMarkup(resize_keyboard=True)
+
+button1.add(but1)
 
 # Включаем логирование, чтобы не пропустить важные сообщения
 logging.basicConfig(level=logging.INFO)
