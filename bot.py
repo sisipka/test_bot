@@ -1,4 +1,3 @@
-from aiogram.filters import Command
 from requests import get
 import asyncio
 import logging
