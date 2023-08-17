@@ -54,7 +54,7 @@ async def main():
 # test
 
 
-@dp.message(Command("start"))
+@dp.message(Command("status"))
 async def cmd_start(message: types.Message):
     kb = [
         [types.KeyboardButton(text="С пюрешкой")],
