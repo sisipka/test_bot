@@ -1,3 +1,4 @@
+from aiogram.filters import Command
 from requests import get
 import asyncio
 import logging
@@ -50,9 +51,14 @@ async def get_text_messages(msg: types.Message):
 # test
 
 
-@dp.message_handler(commands=['test'])
-async def test_message(msg: types.Message):
-    await msg.answer("Hello, <b>world</b>!")
+# Если не указать фильтр F.text,
+# то хэндлер сработает даже на картинку с подписью /test,
+# но пока нам это не важно и рассматриваем только текстовые сообщения
+
+@dp.message(Command("test"))
+async def any_message(message: types.Message):
+    await message.answer("Hello, <b>world</b>!", parse_mode="HTML")
+    await message.answer("Hello, *world*\!", parse_mode="MarkdownV2")
 
 
 # Запуск процесса поллинга новых апдейтов
