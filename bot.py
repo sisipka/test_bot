@@ -52,8 +52,7 @@ async def get_text_messages(msg: types.Message):
 
 @dp.message_handler(commands=['test'])
 async def test_message(msg: types.Message):
-    await msg.answer("Hello, <b>world</b>!", parse_mode="HTML")
-    await msg.answer("Hello, *world*\!", parse_mode="MarkdownV2")
+    await msg.answer("Hello, <b>world</b>!")
 
 
 # Запуск процесса поллинга новых апдейтов
