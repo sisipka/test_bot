@@ -1,7 +1,7 @@
 from requests import get
 import asyncio
 import logging
-from aiogram import Bot, Dispatcher, executor, types, utils
+from aiogram import Bot, Dispatcher, executor, types, utils, filters
 from aiogram.filters import Command
 
 
@@ -9,7 +9,7 @@ from aiogram.filters import Command
 logging.basicConfig(level=logging.INFO)
 
 # Объект бота
-bot = Bot(token="TOKEN")  # TOKEN tellegramm bot
+bot = Bot(token="TOKEN", parse_mode="HTML")  # TOKEN tellegramm bot
 
 # Диспетчер
 dp = Dispatcher(bot)
