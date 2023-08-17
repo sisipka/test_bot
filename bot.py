@@ -55,14 +55,11 @@ async def main():
 # test
 
 
-@dp.message(Command("status"))
-async def cmd_start(message: types.Message):
-    kb = [
-        [types.KeyboardButton(text="С пюрешкой")],
-        [types.KeyboardButton(text="Без пюрешки")]
-    ]
-    keyboard = types.ReplyKeyboardMarkup(keyboard=kb)
-    await message.answer("Как подавать котлеты?", reply_markup=keyboard)
+@dp.message(Command("test"))
+async def any_message(message: types.Message):
+    await message.answer("Hello, <b>world</b>!", parse_mode="HTML")
+    await message.answer("Hello, *world*\!", parse_mode="MarkdownV2")
+
 
 if __name__ == "__main__":
     asyncio.run(main())
