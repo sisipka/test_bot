@@ -50,7 +50,7 @@ async def get_text_messages(msg: types.Message):
 # test
 
 
-@dp.message_handler(Command("test"))
+@dp.message_handler(commands=['test'])
 async def any_message(msg: types.Message):
     await message.answer("Hello, <b>world</b>!", parse_mode="HTML")
     await message.answer("Hello, *world*\!", parse_mode="MarkdownV2")
