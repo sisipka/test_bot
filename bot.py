@@ -1,8 +1,7 @@
 from requests import get
 import asyncio
 import logging
-from aiogram import Bot, Dispatcher, executor, types, utils, filters
-from aiogram.filters import Command
+from aiogram import Bot, Dispatcher, executor, types, utils, Command
 
 
 # Включаем логирование, чтобы не пропустить важные сообщения
