@@ -47,17 +47,19 @@ async def get_text_messages(msg: types.Message):
         await msg.answer('Не понимаю, что это значит.')
 
 
-# Запуск процесса поллинга новых апдейтов
-async def main():
-    await dp.start_polling(bot)
-
 # test
 
 
-@dp.message(Command("test"))
-async def any_message(message: types.Message):
+@dp.message_handler(Command("test"))
+async def any_message(msg: types.Message):
     await message.answer("Hello, <b>world</b>!", parse_mode="HTML")
     await message.answer("Hello, *world*\!", parse_mode="MarkdownV2")
+
+# Запуск процесса поллинга новых апдейтов
+
+
+async def main():
+    await dp.start_polling(bot)
 
 
 if __name__ == "__main__":
