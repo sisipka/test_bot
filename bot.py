@@ -18,12 +18,13 @@ dp = Dispatcher(bot)
 
 b1 = KeyboardButton('/start')
 b2 = KeyboardButton('/ip')
-b3 = KeyboardButton('/locate')
+b3 = KeyboardButton('telephon', reques_contact=True)
+b4 = KeyboardButton('locate', reques_location=True)
 
 # Замещает обычную клавиатуру, на ту которую создаем
-kb_client = ReplyKeyboardMarkup(resize_keyboard=True)
+kb_client = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
 
-kb_client.add(b1).row(b2, b3)
+kb_client.row(b1, b2).row(b3, b4)
 
 # Хэндлер на команду /start
 
