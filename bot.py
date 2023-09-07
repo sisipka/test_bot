@@ -52,7 +52,7 @@ b2 = KeyboardButton('/ip')
 b3 = KeyboardButton('/locate')
 
 # Замещает обычную клавиатуру, на ту которую создаем
-kb_client = ReplyKeyboardMarkup()
+kb_client = ReplyKeyboardMarkup(resize_keyboard=True)
 
 kb_client.add(b1).row(b2, b3)
 
