@@ -14,6 +14,17 @@ bot = Bot(token="TOKEN", parse_mode="HTML")  # TOKEN tellegramm bot
 # Диспетчер
 dp = Dispatcher(bot)
 
+# Кнопки
+
+b1 = KeyboardButton('/start')
+b2 = KeyboardButton('/ip')
+b3 = KeyboardButton('/locate')
+
+# Замещает обычную клавиатуру, на ту которую создаем
+kb_client = ReplyKeyboardMarkup(resize_keyboard)
+
+kb_client.add(b1).row(b2, b3)
+
 # Хэндлер на команду /start
 
 
@@ -45,16 +56,6 @@ async def get_text_messages(msg: types.Message):
     else:
         await msg.answer('Не понимаю, что это значит.')
 
-# Кнопки
-
-b1 = KeyboardButton('/start')
-b2 = KeyboardButton('/ip')
-b3 = KeyboardButton('/locate')
-
-# Замещает обычную клавиатуру, на ту которую создаем
-kb_client = ReplyKeyboardMarkup(resize_keyboard=True)
-
-kb_client.add(b1).row(b2, b3)
 
 # test
 
