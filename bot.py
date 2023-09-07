@@ -2,6 +2,7 @@ from requests import get
 import asyncio
 import logging
 from aiogram import Bot, Dispatcher, types
+from aiogram import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
 
 
 # Включаем логирование, чтобы не пропустить важные сообщения
@@ -41,11 +42,19 @@ async def send_ip(msg: types.Message):
 async def get_text_messages(msg: types.Message):
     if msg.text.lower() == 'привет':
         await msg.answer('Привет!')
-    elif msg.text.lower() == 'myip':
-        await msg.answer(get('https://api.ipify.org').text)
     else:
         await msg.answer('Не понимаю, что это значит.')
 
+# Кнопки
+
+b1 = KeyboardButton('/start')
+b2 = KeyboardButton('/ip')
+b3 = KeyboardButton('/locate')
+
+# Замещает обычную клавиатуру, на ту которую создаем
+kb_client = ReplyKeyboardMarkup()
+
+kb_client.add(b1).row(b2, b3)
 
 # test
 
