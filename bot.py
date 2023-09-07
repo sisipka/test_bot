@@ -30,7 +30,7 @@ kb_client.add(b1).row(b2, b3)
 
 @dp.message_handler(commands=['start'])
 async def send_welcome(msg: types.Message):
-    await msg.answer(f'Я бот. Приятно познакомиться, {msg.from_user.first_name}')
+    await msg.answer(f'Я бот. Приятно познакомиться, {msg.from_user.first_name}', reply_markup=kb_client)
 
 # Хэндлер на команду /help
 
