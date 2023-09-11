@@ -85,7 +85,7 @@ async def get_text_messages(msg: types.Message):
 
 
 async def main():
-    await dp.startup.register(set_main_menu)
+    await dp.on_startup.register(set_main_menu)
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
