@@ -14,37 +14,19 @@ bot = Bot(token="TOKEN", parse_mode="HTML")  # TOKEN tellegramm bot
 # Диспетчер
 dp = Dispatcher(bot)
 
-# Меню
-
-
-# Создаем асинхронную функцию
-async def set_main_menu(bot: Bot):
-
-    # Создаем список с командами и их описанием для кнопки menu
-    main_menu_commands = [
-        BotCommand(command='/help',
-                   description='Справка по работе бота'),
-        BotCommand(command='/support',
-                   description='Поддержка'),
-        BotCommand(command='/contacts',
-                   description='Другие способы связи'),
-        BotCommand(command='/payments',
-                   description='Платежи')]
-
-    await bot.set_my_commands(main_menu_commands)
 
 # Кнопки
 
-# b1 = KeyboardButton('/start')
-# b2 = KeyboardButton('/help')
-# b3 = KeyboardButton('/ip')
-# b4 = KeyboardButton('telephon', request_contact=True)
-# b5 = KeyboardButton('locate', request_location=True)
+b1 = KeyboardButton('/start')
+b2 = KeyboardButton('/help')
+b3 = KeyboardButton('/ip')
+b4 = KeyboardButton('telephon', request_contact=True)
+b5 = KeyboardButton('locate', request_location=True)
 
-# # Замещает обычную клавиатуру, на ту которую создаем
-# kb_client = ReplyKeyboardMarkup(resize_keyboard=True)
+# Замещает обычную клавиатуру, на ту которую создаем
+kb_client = ReplyKeyboardMarkup(resize_keyboard=True)
 
-# kb_client.row(b1, b2, b3).row(b4, b5)
+kb_client.row(b1, b2, b3).row(b4, b5)
 
 # Хэндлер на команду /start
 
@@ -85,7 +67,6 @@ async def get_text_messages(msg: types.Message):
 
 
 async def main():
-    await dp.on_startup.register(set_main_menu)
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
