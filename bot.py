@@ -84,6 +84,9 @@ async def get_text_messages(msg: types.Message):
 # Запуск процесса поллинга новых апдейтов
 
 
+async def main():
+    await dp.startup.register(set_main_menu)
+    await dp.start_polling(bot)
+
 if __name__ == '__main__':
-    dp.startup.register(set_main_menu)
-    dp.start_polling(bot)
+    asyncio.run(main())
