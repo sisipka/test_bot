@@ -2,7 +2,7 @@ from requests import get
 import asyncio
 import logging
 from aiogram import Bot, Dispatcher, types
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove, BotCommand
 
 
 # Включаем логирование, чтобы не пропустить важные сообщения
