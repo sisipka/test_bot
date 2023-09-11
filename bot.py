@@ -89,4 +89,5 @@ async def main():
 
 
 if __name__ == "__main__":
+    dp.startup.register(set_main_menu)
     asyncio.run(main())
