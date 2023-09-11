@@ -35,16 +35,16 @@ async def set_main_menu(bot: Bot):
 
 # Кнопки
 
-b1 = KeyboardButton('/start')
-b2 = KeyboardButton('/help')
-b3 = KeyboardButton('/ip')
-b4 = KeyboardButton('telephon', request_contact=True)
-b5 = KeyboardButton('locate', request_location=True)
+# b1 = KeyboardButton('/start')
+# b2 = KeyboardButton('/help')
+# b3 = KeyboardButton('/ip')
+# b4 = KeyboardButton('telephon', request_contact=True)
+# b5 = KeyboardButton('locate', request_location=True)
 
-# Замещает обычную клавиатуру, на ту которую создаем
-kb_client = ReplyKeyboardMarkup(resize_keyboard=True)
+# # Замещает обычную клавиатуру, на ту которую создаем
+# kb_client = ReplyKeyboardMarkup(resize_keyboard=True)
 
-kb_client.row(b1, b2, b3).row(b4, b5)
+# kb_client.row(b1, b2, b3).row(b4, b5)
 
 # Хэндлер на команду /start
 
