@@ -2,9 +2,10 @@ from requests import get
 import asyncio
 import logging
 from aiogram import Bot, Dispatcher, types
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove, BotCommand
-from aiogram.filters import Command
 from aiogram.types import Message
+
+# from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove, BotCommand
+# from aiogram.filters import Command
 
 
 # Включаем логирование, чтобы не пропустить важные сообщения
@@ -35,33 +36,33 @@ dp = Dispatcher()
 # Хэндлер на команду /start
 
 
-@dp.message_handler(commands=['start'])
+@dp.message(Command(commands=["start"]))
 async def send_welcome(msg: types.Message):
     await msg.answer(f'Я бот. Приятно познакомиться, {msg.from_user.first_name}')
 
 # Хэндлер на команду /help
 
 
-@dp.message_handler(commands=['help'])
+@dp.message(Command(commands=['help']))
 async def send_help(msg: types.Message):
     await msg.reply('Я бот. Создан для тестов и экспериментов')
 
 # Хэндлер на команду /ip
 
 
-@dp.message_handler(commands=['ip'])
+@dp.message(Command(commands=['ip']))
 async def send_ip(msg: types.Message):
     await msg.answer(get('https://api.ipify.org').text)
 
-# Хэндлер Привет
+# # Хэндлер Привет
 
 
-@dp.message_handler(content_types=['text'])
-async def get_text_messages(msg: types.Message):
-    if msg.text.lower() == 'привет':
-        await msg.answer('Привет!')
-    else:
-        await msg.answer('Не понимаю, что это значит.')
+# @dp.message_handler(content_types=['text'])
+# async def get_text_messages(msg: types.Message):
+#     if msg.text.lower() == 'привет':
+#         await msg.answer('Привет!')
+#     else:
+#         await msg.answer('Не понимаю, что это значит.')
 
 
 # test
