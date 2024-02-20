@@ -9,7 +9,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemo
 logging.basicConfig(level=logging.INFO)
 
 # Объект бота
-bot = Bot(token="TOKEN", parse_mode="HTML")  # TOKEN tellegramm bot
+bot = Bot(token="TOKEN")  # TOKEN tellegramm bot
 
 # Диспетчер
 dp = Dispatcher(bot)
