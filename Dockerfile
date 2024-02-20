@@ -7,8 +7,7 @@ WORKDIR /telegram_bot
 COPY ./requirements.txt .
 
 # Устанавливаем зависимости
-RUN pip install --upgrade pip 
-#&& pip install --no-cache-dir -r ./requirements.txt
+RUN pip install --upgrade pip && pip install --no-cache-dir -r ./requirements.txt
 
 # Копируем проект
 
