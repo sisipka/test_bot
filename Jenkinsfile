@@ -50,7 +50,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
 
                 sh 'hostname'
                 sh 'hostname -i'
-                sh 'ls'
+                sh 'ls -la'
                 sh 'cat requirements.txt'
             }
             container('kubectl') { 
