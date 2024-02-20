@@ -11,7 +11,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
     ),
     containerTemplate(
       name: 'kubectl', 
-      image: 'rancher/kubectl:v1.28.0',
+      image: 'amaceog/kubectl',
       resourceRequestCpu: '10m',
       resourceLimitCpu: '200m',
       resourceRequestMemory: '150Mi',
@@ -54,8 +54,6 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
             }
             container('kubectl') { 
                 sh 'kubectl version'
-                sh 'kubectl config'
-                sh 'kubectl cluster-info'
                 sh 'kubectl get pods -n jenkins'  
             }
             container('helm') { 
