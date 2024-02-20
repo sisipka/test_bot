@@ -11,7 +11,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
     ),
     containerTemplate(
       name: 'kubectl', 
-      image: 'rancher/kubectl',
+      image: 'rancher/kubectl:v1.28.0',
       resourceRequestCpu: '10m',
       resourceLimitCpu: '200m',
       resourceRequestMemory: '150Mi',
