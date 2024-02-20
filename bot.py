@@ -3,9 +3,9 @@ import asyncio
 import logging
 from aiogram import Bot, Dispatcher, types
 from aiogram.types import Message
+from aiogram.filters import Command
 
 # from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove, BotCommand
-# from aiogram.filters import Command
 
 
 # Включаем логирование, чтобы не пропустить важные сообщения
