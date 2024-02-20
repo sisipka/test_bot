@@ -53,6 +53,8 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
                 sh 'ls'
             }
             container('kubectl') { 
+                sh 'kubectl version'
+                sh 'kubectl config'
                 sh 'kubectl cluster-info'
                 sh 'kubectl get pods -n jenkins'  
             }
