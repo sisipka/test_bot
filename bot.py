@@ -4,16 +4,19 @@ import logging
 from aiogram import Bot, Dispatcher, types
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove, BotCommand
 from aiogram.filters import Command
+from aiogram.types import Message
 
 
 # Включаем логирование, чтобы не пропустить важные сообщения
 logging.basicConfig(level=logging.INFO)
 
+TOKEN = BOT_TOKEN
+
 # Объект бота
-bot = Bot(token="TOKEN")  # TOKEN tellegramm bot
+bot = Bot(token=TOKEN)  # TOKEN tellegramm bot
 
 # Диспетчер
-dp = Dispatcher(bot)
+dp = Dispatcher()
 
 
 # Кнопки
