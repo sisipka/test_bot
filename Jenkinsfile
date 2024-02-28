@@ -66,7 +66,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
         stage('Build Image'){
             container('docker'){
 
-              withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')], [string(credentialsId: 'BOT_TOKEN', variable: 'SECRET')]) {
+              withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'), string(credentialsId: 'BOT_TOKEN', variable: 'SECRET')]) {
 
                 sh "echo '${SECRET}'"
                 sh "sed -i 's/BOT_TOKEN/"${SECRET}"/' bot.py"
