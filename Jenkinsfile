@@ -68,8 +68,9 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
 
               withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'), string(credentialsId: 'BOT_TOKEN', variable: 'SECRET')]) {
 
-                sh "echo '${SECRET}'"
-                sh "echo '${USERNAME}'"
+                sh "echo 'SECRET=${SECRET}'>test"
+                sh "echo 'USER=${USERNAME}'>>test"
+                sh 'cat .test'
                 sh "sed -i 's/BOT_TOKEN/"${SECRET}"/' bot.py"
                 sh 'cat bot.py'
                 sh 'docker login --username="${USERNAME}" --password="${PASSWORD}"'
