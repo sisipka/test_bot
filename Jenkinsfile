@@ -70,7 +70,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
 
                 sh "echo 'SECRET=${SECRET}'>test"
                 sh "echo 'USER=${USERNAME}'>>test"
-                sh 'cat .test'
+                sh 'cat test'
                 sh "sed -i 's/BOT_TOKEN/"${SECRET}"/' bot.py"
                 sh 'cat bot.py'
                 sh 'docker login --username="${USERNAME}" --password="${PASSWORD}"'
