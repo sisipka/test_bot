@@ -59,7 +59,6 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
             container('docker') {  
 
               withCredentials([file(credentialsId: 'vault', variable: 'vault')]) {
-
                 sh 'hostname'
                 sh 'hostname -i'
                 sh 'ls -la'
