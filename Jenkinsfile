@@ -77,7 +77,6 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
             container('vault') { 
                 sh 'ansible-vault --version'
                 sh 'cat bot/.env'
-                sh 'ansible-vault'
                 sh "ansible-vault decrypt bot/.env --vault-password-file ${vault}"
                 sh 'cat bot/.env'
             }
