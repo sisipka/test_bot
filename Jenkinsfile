@@ -56,7 +56,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
                 sh 'cat requirements.txt'
                 sh 'cat bot/.env'
                 sh "echo '${vault}'"
-                sh "ansible-vault decrypt bot/.env --vault-password-file ${vault}"
+                sh "cat bot/.env | ansible-vault decrypt --vault-password-file ${vault}"
                 sh 'cat bot/.env'
               }
             }
