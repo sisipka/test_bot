@@ -1,7 +1,7 @@
 FROM python:alpine
 
 # Установим директорию для работы
-WORKDIR /telegram_bot
+WORKDIR /bot
 
 # Копируем зависимости
 COPY ./requirements.txt .
@@ -11,8 +11,8 @@ RUN pip install --upgrade pip && pip install --no-cache-dir -r ./requirements.tx
 
 # Копируем проект
 
-COPY ./bot.py .
+COPY ./bot .
 RUN chmod -R 777 ./bot.py
 
 # run app
-CMD ["python", "bot.py"]
+CMD ["python", "main.py"]

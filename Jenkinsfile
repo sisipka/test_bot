@@ -53,10 +53,15 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
         def HELM_CHART_DIRECTORY = "helm_test_bot"
 
         stage('Get latest version of code') {
+
           checkout scm
+
         }
+
         stage('Check running containers') {
+
             container('docker') {  
+
                 sh 'hostname'
                 sh 'hostname -i'
                 sh 'ls -la'
@@ -64,15 +69,21 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
 
             }
             container('kubectl') { 
+
                 sh 'kubectl version'
                 sh 'kubectl get pods -n jenkins'  
+
             }
             container('helm') { 
+
                 sh 'helm list'
-                sh 'helm version'     
+                sh 'helm version'  
+
             }
+            
             container('vault') { 
               withCredentials([file(credentialsId: 'vault', variable: 'vault')]) {
+
                 sh 'ansible-vault --version'
                 sh 'cat bot/.env'
                 sh "ansible-vault decrypt bot/.env --vault-password-file ${vault}"
@@ -86,11 +97,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
 
               withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'), string(credentialsId: 'BOT_TOKEN', variable: 'SECRET')]) {
 
-                sh "echo 'SECRET=${SECRET}'>test"
-                sh "echo 'USER=${USERNAME}'>>test"
-                sh 'cat test'
-                sh "sed -i 's/BOT_TOKEN/"${SECRET}"/' bot.py"
-                sh 'cat bot.py'
+                sh 'cat bot/main.py'
                 sh 'docker login --username="${USERNAME}" --password="${PASSWORD}"'
                 sh "docker build -t ${REPOSITORY_URI}:${BUILD_NUMBER} ."
                 sh 'docker image ls' 
