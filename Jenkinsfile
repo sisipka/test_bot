@@ -57,14 +57,11 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
         }
         stage('Check running containers') {
             container('docker') {  
-
-              withCredentials([file(credentialsId: 'vault', variable: 'vault')]) {
                 sh 'hostname'
                 sh 'hostname -i'
                 sh 'ls -la'
                 sh 'cat requirements.txt'
-                
-              }
+
             }
             container('kubectl') { 
                 sh 'kubectl version'
@@ -75,10 +72,12 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
                 sh 'helm version'     
             }
             container('vault') { 
+              withCredentials([file(credentialsId: 'vault', variable: 'vault')]) {
                 sh 'ansible-vault --version'
                 sh 'cat bot/.env'
                 sh "ansible-vault decrypt bot/.env --vault-password-file ${vault}"
                 sh 'cat bot/.env'
+              }
             }
         }  
 
