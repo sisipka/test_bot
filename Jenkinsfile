@@ -62,8 +62,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
 
             container('docker') {  
 
-                sh 'hostname'
-                sh 'hostname -i'
+                sh 'docker version'
                 sh 'ls -la'
                 sh 'cat requirements.txt'
 
@@ -80,7 +79,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
                 sh 'helm version'  
 
             }
-            
+
             container('vault') { 
               withCredentials([file(credentialsId: 'vault', variable: 'vault')]) {
 
@@ -109,8 +108,8 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
         stage('Testing') {
             container('docker') { 
 
-              sh 'whoami'
               sh 'cat /etc/os-release'
+              sh 'docker ps'
             }
         }
 
