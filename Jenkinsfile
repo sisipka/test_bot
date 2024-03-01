@@ -31,7 +31,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
     ),
     containerTemplate(
       name: 'vault', 
-      image: 'hashicorp/vault', 
+      image: 'bedasoftware/ansible-vault', 
       resourceRequestCpu: '50m',
       resourceLimitCpu: '150m',
       resourceRequestMemory: '150Mi',
