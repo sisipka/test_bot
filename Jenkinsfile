@@ -55,9 +55,8 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
                 sh 'ls -la'
                 sh 'cat requirements.txt'
                 sh 'cat bot/.env'
-                sh "echo '${vault}'"
-                sh "cat bot/.env | ansible-vault decrypt --vault-password-file ${vault}"
-                sh 'cat bot/.env'
+                sh "cat bot/.env | ansible-vault decrypt --vault-password-file ${vault}" > 1
+                sh 'cat 1'
               }
             }
             container('kubectl') { 
