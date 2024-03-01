@@ -57,6 +57,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
                 sh 'cat bot/.env'
                 sh "ansible-vault decrypt --vault-id=${SECRET} bot/.env"
                 sh 'cat bot/.env'
+              }
             }
             container('kubectl') { 
                 sh 'kubectl version'
