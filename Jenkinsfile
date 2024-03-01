@@ -28,7 +28,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
       resourceLimitMemory: '250Mi',
       ttyEnabled: true, 
       command: 'cat'
-    )
+    ),
     containerTemplate(
       name: 'vault', 
       image: 'hashicorp/vault', 
