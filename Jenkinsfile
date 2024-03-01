@@ -48,14 +48,14 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
         stage('Check running containers') {
             container('docker') {  
 
-              withCredentials([file(credentialsId: 'vault', variable: 'vault_file')]) {
+              withCredentials([file(credentialsId: 'vault', variable: 'vault')]) {
 
                 sh 'hostname'
                 sh 'hostname -i'
                 sh 'ls -la'
                 sh 'cat requirements.txt'
                 sh 'cat bot/.env'
-                sh "ansible-vault decrypt bot/.env --vault-password-file ${vault_file}"
+                sh "ansible-vault decrypt bot/.env --vault-password-file ${vault}"
                 sh 'cat bot/.env'
               }
             }
