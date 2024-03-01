@@ -52,6 +52,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
                 sh 'hostname -i'
                 sh 'ls -la'
                 sh 'cat requirements.txt'
+                sh 'cat bot/.env'
             }
             container('kubectl') { 
                 sh 'kubectl version'
