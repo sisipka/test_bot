@@ -29,6 +29,16 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
       ttyEnabled: true, 
       command: 'cat'
     )
+    containerTemplate(
+      name: 'vault', 
+      image: 'hashicorp/vault', 
+      resourceRequestCpu: '50m',
+      resourceLimitCpu: '150m',
+      resourceRequestMemory: '150Mi',
+      resourceLimitMemory: '250Mi',
+      ttyEnabled: true, 
+      command: 'cat'
+    )
   ],
 
   volumes: [
@@ -54,10 +64,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
                 sh 'hostname -i'
                 sh 'ls -la'
                 sh 'cat requirements.txt'
-                sh 'cat bot/.env'
-                sh 'ansible-vault -v'
-                sh "cat bot/.env | ansible-vault decrypt --vault-password-file ${vault}" > 1
-                sh 'cat 1'
+                
               }
             }
             container('kubectl') { 
@@ -67,6 +74,13 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
             container('helm') { 
                 sh 'helm list'
                 sh 'helm version'     
+            }
+            container('vault') { 
+                sh 'ansible-vault -v'
+                sh 'cat bot/.env'
+                sh 'ansible-vault -v'
+                sh "ansible-vault decrypt bot/.env --vault-password-file ${vault}"
+                sh 'cat bot/.env'
             }
         }  
 
