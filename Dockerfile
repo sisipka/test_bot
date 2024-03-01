@@ -12,7 +12,7 @@ RUN pip install --upgrade pip && pip install --no-cache-dir -r ./requirements.tx
 # Копируем проект
 
 COPY ./bot .
-RUN chmod -R 777 ./bot.py
+RUN chmod -R 777 ./main.py
 
 # run app
 CMD ["python", "main.py"]
