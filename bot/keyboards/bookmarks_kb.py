@@ -5,13 +5,17 @@ from services.file_handling import book
 
 
 def create_bookmarks_keyboard(*args: int) -> InlineKeyboardMarkup:
-    # Создаем объект клавиатуры
+    # Инициализируем билдер
     kb_builder = InlineKeyboardBuilder()
+    # Инициализируем список для кнопок
+    buttons: list[InlineKeyboardButton] = []
     # Наполняем клавиатуру кнопками-закладками в порядке возрастания
-    for button in sorted(args):
-        kb_builder.row(InlineKeyboardButton(
-            text=f'{button} - {book[button][:100]}',
-            callback_data=str(button)))
+    for button, text in LEXICON_COMMANDS.items():
+        buttons.append(InlineKeyboardButton(
+            text=text,
+            callback_data=button))
+    # Распаковываем список с кнопками в билдер методом row c параметром width
+    kb_builder.row(*buttons, width=width)
     # Добавляем в клавиатуру в конце две кнопки "Редактировать" и "Отменить"
     kb_builder.row(
         InlineKeyboardButton(
@@ -30,12 +34,6 @@ def create_bookmarks_keyboard(*args: int) -> InlineKeyboardMarkup:
 def create_edit_keyboard(*args: int) -> InlineKeyboardMarkup:
     # Создаем объект клавиатуры
     kb_builder = InlineKeyboardBuilder()
-    # Наполняем клавиатуру кнопками-закладками в порядке возрастания
-    for button in sorted(args):
-        kb_builder.row(InlineKeyboardButton(
-            text=f'{LEXICON["del"]} {button} - {book[button][:100]}',
-            callback_data=f'{button}del'
-        ))
     # Добавляем в конец клавиатуры кнопку "Отменить"
     kb_builder.row(InlineKeyboardButton(
         text=LEXICON['cancel'],
