@@ -5,7 +5,6 @@ from aiogram.filters import Command, CommandStart
 from aiogram.types import CallbackQuery, Message
 from database.database import user_dict_template, users_db
 from lexicon.lexicon import LEXICON
-from services.file_handling import book
 
 router = Router()
 
