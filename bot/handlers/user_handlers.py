@@ -16,7 +16,6 @@ router = Router()
 @router.message(CommandStart())
 async def process_start_command(message: Message):
     await message.answer(LEXICON[message.text])
-    await create_profile(user_id=message.from_user.id)
 
 
 # # Этот хэндлер будет срабатывать на команду "/help"
