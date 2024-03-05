@@ -3,8 +3,9 @@ from copy import deepcopy
 from aiogram import F, Router
 from aiogram.filters import Command, CommandStart
 from aiogram.types import CallbackQuery, Message
-from database.database import user_dict_template, users_db
+from bot.database.sqlite import user_dict_template, users_db
 from lexicon.lexicon import LEXICON
+from sqlite import db_start, create_profile, edit_profile
 
 router = Router()
 
@@ -16,7 +17,7 @@ router = Router()
 async def process_start_command(message: Message):
     await message.answer(LEXICON[message.text])
     if message.from_user.id not in users_db:
-        users_db[message.from_user.id] = deepcopy(user_dict_template)
+        await create_profile(user_id=message.from_user.id)
 
 
 # Этот хэндлер будет срабатывать на команду "/help"
