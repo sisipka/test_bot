@@ -33,7 +33,7 @@ async def main():
     # Настраиваем главное меню бота
     await set_main_menu(bot)
 
-    await db_start()
+    await db_start(bot)
 
     # Регистриуем роутеры в диспетчере
     dp.include_router(user_handlers.router)
