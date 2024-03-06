@@ -3,7 +3,6 @@ from copy import deepcopy
 from aiogram import F, Router
 from aiogram.filters import Command, CommandStart
 from aiogram.types import CallbackQuery, Message
-from bot.database.sqlite import user_dict_template, users_db
 from lexicon.lexicon import LEXICON
 from sqlite import db_start, create_profile, edit_profile
 
