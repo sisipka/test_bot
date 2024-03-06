@@ -9,7 +9,6 @@ async def db_start():
 
     cur.execute(
         "CREATE TABLE IF NOT EXISTS profile(user_id TEXT PRIMARY KEY, description TEXT)")
-
     db.commit()
 
 
