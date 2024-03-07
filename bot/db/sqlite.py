@@ -4,7 +4,7 @@ import sqlite3 as sq
 async def db_start():
     global db, cur
 
-    db = sq.connect('database/database.db')
+    db = sq.connect('db/database.db')
     cur = db.cursor()
 
     cur.execute(
