@@ -14,8 +14,12 @@ router = Router()
 # и отправлять ему приветственное сообщение
 @router.message(CommandStart())
 async def process_start_command(message: Message):
-    await message.answer(f"Ваш ID: {message.from_user.id}")
+    await message.answer(LEXICON[message.text])
 
+
+@router.message(CommandHelp())
+async def process_help_command(message: Message):
+    await message.answer(f"Ваш ID: {message.from_user.id}")
 
 # # Этот хэндлер будет срабатывать на команду "/help"
 # # и отправлять пользователю сообщение со списком доступных команд в боте
