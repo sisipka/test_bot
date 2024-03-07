@@ -12,7 +12,7 @@ router = Router()
 # Этот хэндлер будет срабатывать на команду "/start" -
 # добавлять пользователя в базу данных, если его там еще не было
 # и отправлять ему приветственное сообщение
-@router.message(Command(commands='start'))
+@router.message(CommandStart())
 async def process_start_command(message: Message):
     await message.answer('Привет')#LEXICON[message.text])
 
