@@ -14,7 +14,7 @@ router = Router()
 # и отправлять ему приветственное сообщение
 @router.message(Command(commands='start'))
 async def process_start_command(message: Message):
-    await message.answer(LEXICON[message.text])
+    await message.answer('Привет')#LEXICON[message.text])
 
 
 @router.message(Command(commands='help'))
