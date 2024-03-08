@@ -4,7 +4,7 @@ from aiogram import F, Router
 from aiogram.filters import Command, CommandStart
 from aiogram.types import CallbackQuery, Message
 from lexicon.lexicon import LEXICON
-from db.sqlite import db_start, create_profile, edit_profile
+
 
 router = Router()
 
@@ -14,7 +14,7 @@ router = Router()
 # и отправлять ему приветственное сообщение
 @router.message(CommandStart())
 async def process_start_command(message: Message):
-    await message.answer(LEXICON[message.text])
+    await message.answer("Hello!")
 
 
 @router.message(Command(commands='help'))
